@@ -9,7 +9,8 @@ const client = new Client({
     GatewayIntentBits.GuildVoiceStates,         //For tracking voice channels I think
     GatewayIntentBits.GuildMessageReactions,    //For emoji reactions
     GatewayIntentBits.GuildMessages,            //For writing messages
-    GatewayIntentBits.DirectMessages            //For responding, also needs GuildMessages
+    GatewayIntentBits.DirectMessages,           //For responding, also needs GuildMessages
+    GatewayIntentBits.MessageContent            //For tracking all messages
   ] 
 });
 
