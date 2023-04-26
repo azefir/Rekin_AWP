@@ -17,17 +17,12 @@ const client = new Client({
 var piwocounter=0;
 
   client.on('voiceStateUpdate', async (oldState, newState) => {
-    // Ignore messages authored by the bot itself
-    if (message.author.bot) {
-      return;
-    }
-
     // Input Discord user ID below
     // Pietrek = 187807207633453056
     if (newState.member.user.id === '187807207633453056') {
     const channel = newState.channel;
     if (channel) {
-      piwcounter++
+      piwocounter++
       try {
         console.log(
             // Console log for bot host
