@@ -71,7 +71,7 @@ var piwocounter=0;
       );
     }
 
-    if (message.content.toLowerCase().includes("piwo")) {
+    if (message.content.toLowerCase().includes("piwo") || message.content.toLowerCase().includes("beer")) {
       piwocounter++
       console.log(
         // Console log for bot host
