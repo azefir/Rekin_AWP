@@ -14,7 +14,7 @@ const client = new Client({
   ] 
 });
 
-var piwocounter=1;
+var piwocounter=0;
 
   client.on('voiceStateUpdate', async (oldState, newState) => {
     // Ignore messages authored by the bot itself
@@ -27,6 +27,7 @@ var piwocounter=1;
     if (newState.member.user.id === '187807207633453056') {
     const channel = newState.channel;
     if (channel) {
+      piwcounter++
       try {
         console.log(
             // Console log for bot host
@@ -45,7 +46,6 @@ var piwocounter=1;
         const stream = createReadStream('Pietreksmiec.mp3');    // MP3 name here
         const resource = createAudioResource(stream);
         player.play(resource);
-        piwocounter++
         voiceConnection.subscribe(player);
         player.on(AudioPlayerStatus.Idle, () => {
           voiceConnection.destroy();
@@ -77,11 +77,11 @@ var piwocounter=1;
     }
 
     if (message.content.toLowerCase().includes("piwo")) {
+      piwocounter++
       console.log(
         // Console log for bot host
         `Ktos napisal piwo \nPIWO counter: ${piwocounter}`
       );
-      piwocounter++
       message.reply(':beer: Piwo piwo to moje paliwo boże jak uwielbiam piwo piwo :beer:')
       .then(() => message.react('🍺'));
     }
