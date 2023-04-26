@@ -18,7 +18,7 @@ var piwocounter=0;
   client.on('voiceStateUpdate', async (oldState, newState) => {
     // Input Discord user ID below
     // Pietrek = 187807207633453056
-    if (newState.member.user.id === '114831409503272960') {
+    if (newState.member.user.id === '187807207633453056') {
     const channel = newState.channel;
     if (channel) {
       try {
