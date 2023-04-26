@@ -14,9 +14,14 @@ const client = new Client({
   ] 
 });
 
-var piwocounter=0;
+var piwocounter=1;
 
   client.on('voiceStateUpdate', async (oldState, newState) => {
+    // Ignore messages authored by the bot itself
+    if (message.author.bot) {
+      return;
+    }
+
     // Input Discord user ID below
     // Pietrek = 187807207633453056
     if (newState.member.user.id === '187807207633453056') {
@@ -25,7 +30,7 @@ var piwocounter=0;
       try {
         console.log(
             // Console log for bot host
-            `${newState.member.displayName} has joined the voice channel "${newState.channel.name}" - executing order PIWO \nPIWO execution counter: ${piwocounter}`
+            `${newState.member.displayName} has joined the voice channel "${newState.channel.name}" - executing order PIWO \nPIWO counter: ${piwocounter}`
           );
         const connection = getVoiceConnection(channel.guild.id);
         if (connection) {
@@ -56,21 +61,27 @@ var piwocounter=0;
 });
 
   client.on('messageCreate', message => {
-      // Ignore messages authored by the bot itself
+    // Ignore messages authored by the bot itself
     if (message.author.bot) {
       return;
     }
 
     if (message.mentions.has(client.user)) {
+      piwocounter++
       message.reply(':beer: Alkoholowe napoje to moje naboje :beer:')
       .then(() => message.react('🍺'));
+      console.log(
+        // Console log for bot host
+        `PIWO counter: ${piwocounter}`
+      );
     }
 
     if (message.content.toLowerCase().includes("piwo")) {
       console.log(
         // Console log for bot host
-        `Ktos napisal piwo`
+        `Ktos napisal piwo \nPIWO counter: ${piwocounter}`
       );
+      piwocounter++
       message.reply(':beer: Piwo piwo to moje paliwo boże jak uwielbiam piwo piwo :beer:')
       .then(() => message.react('🍺'));
     }
