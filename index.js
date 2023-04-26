@@ -54,12 +54,12 @@ var piwocounter=0;
   }
 });
 
-client.on('messageCreate', message => {
+  client.on('messageCreate', message => {
     if (message.mentions.has(client.user)) {
         message.reply(':beer: Alkoholowe napoje to moje naboje :beer:')
         .then(() => message.react('🍺'));
     }
-  });
+});
 
 
 client.login(token);
