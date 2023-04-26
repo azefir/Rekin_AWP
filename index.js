@@ -55,11 +55,24 @@ var piwocounter=0;
 });
 
   client.on('messageCreate', message => {
+      // Ignore messages authored by the bot itself
+    if (message.author.bot) {
+      return;
+    }
+
     if (message.mentions.has(client.user)) {
-        message.reply(':beer: Alkoholowe napoje to moje naboje :beer:')
-        .then(() => message.react('🍺'));
+      message.reply(':beer: Alkoholowe napoje to moje naboje :beer:')
+      .then(() => message.react('🍺'));
+    }
+
+    if (message.content.toLowerCase().includes("piwo")) {
+      console.log(
+        // Console log for bot host
+        `Ktos napisal piwo`
+      );
+      message.reply(':beer: Piwo piwo to moje paliwo boże jak uwielbiam piwo piwo :beer:')
+      .then(() => message.react('🍺'));
     }
 });
-
 
 client.login(token);
