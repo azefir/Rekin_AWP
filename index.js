@@ -17,17 +17,23 @@ const client = new Client({
 var piwocounter=0;
 
   client.on('voiceStateUpdate', async (oldState, newState) => {
+    const user = newState.member.user;
     // Input Discord user ID below
     // Pietrek = 187807207633453056
-    if (newState.member.user.id === '187807207633453056') {
+    const isTarget = user.id === '187807207633453056'
+    const isMuted = newState.selfMute;
+    const oldChannel = oldState.channel;
     const channel = newState.channel;
-    if (channel) {
+
+    if (isTarget && channel && (!oldChannel || oldChannel.id !== channel.id) || isMuted) {
       piwocounter++
       try {
-        console.log(
-            // Console log for bot host
-            `${newState.member.displayName} has joined the voice channel "${newState.channel.name}" - executing order PIWO \nPIWO counter: ${piwocounter}`
-          );
+        if ((!oldChannel || oldChannel.id !== channel.id)) {
+          console.log(`${newState.member.displayName} has joined the voice channel "${newState.channel.name}" - executing order PIWO \nPIWO counter: ${piwocounter}`);
+        }
+        if (isMuted) {
+          console.log(`${newState.member.displayName} muted himself, better let everyone know...\nPIWO counter: ${piwocounter}`);
+        }
         const connection = getVoiceConnection(channel.guild.id);
         if (connection) {
           connection.destroy();
@@ -38,7 +44,8 @@ var piwocounter=0;
           adapterCreator: channel.guild.voiceAdapterCreator,
         });
         const player = createAudioPlayer();
-        const stream = createReadStream('Pietreksmiec.mp3');    // MP3 name here
+        const audioFile = isMuted ? 'pietrek_nicniemow.mp3' : 'pietrek_pietreksmiec.mp3';    // MP3 names here with conditions
+        const stream = createReadStream(audioFile);
         const resource = createAudioResource(stream);
         player.play(resource);
         voiceConnection.subscribe(player);
@@ -52,7 +59,6 @@ var piwocounter=0;
         console.error(error);
       }
     }
-  }
 });
 
   client.on('messageCreate', message => {
@@ -75,7 +81,7 @@ var piwocounter=0;
       piwocounter++
       console.log(
         // Console log for bot host
-        `Ktos napisal piwo \nPIWO counter: ${piwocounter}`
+        `Did someone say [piwo]? \nPIWO counter: ${piwocounter}`
       );
       message.reply(':beer: Piwo piwo to moje paliwo boże jak uwielbiam piwo piwo :beer:')
       .then(() => message.react('🍺'));
