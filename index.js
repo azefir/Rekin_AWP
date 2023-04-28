@@ -25,7 +25,7 @@ var piwocounter=0;
     const oldChannel = oldState.channel;
     const channel = newState.channel;
 
-    if (isTarget && channel && (!oldChannel || oldChannel.id !== channel.id) || isMuted) {
+    if (isTarget && (channel && (!oldChannel || oldChannel.id !== channel.id) || isMuted)) {
       piwocounter++
       try {
         if ((!oldChannel || oldChannel.id !== channel.id)) {
