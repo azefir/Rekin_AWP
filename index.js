@@ -86,6 +86,15 @@ var piwocounter=0;
       message.reply(':beer: Piwo piwo to moje paliwo boże jak uwielbiam piwo piwo :beer:')
       .then(() => message.react('🍺'));
     }
+
+    if (message.content.toLowerCase().includes("lean")) {
+      console.log(
+        // Console log for bot host
+        `Did someone say [lean]?`
+      );
+      message.reply(':grapes: LEAN LEAN LUBIE PIĆ LEAN :grapes:')
+      .then(() => message.react('🍇'));
+    }
 });
 
 client.login(token);
