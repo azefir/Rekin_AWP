@@ -14,6 +14,12 @@ const client = new Client({
   ] 
 });
 
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+}
+
 var piwocounter=0;
 
   client.on('voiceStateUpdate', async (oldState, newState) => {
@@ -79,21 +85,67 @@ var piwocounter=0;
 
     if (message.content.toLowerCase().includes("piwo") || message.content.toLowerCase().includes("beer")) {
       piwocounter++
+      var rand_msg_id=(getRandomInt(1,10));
       console.log(
         // Console log for bot host
         `Did someone say [piwo]? \nPIWO counter: ${piwocounter}`
       );
-      message.reply(':beer: Piwo piwo to moje paliwo boże jak uwielbiam piwo piwo :beer:')
-      .then(() => message.react('🍺'));
+      switch (rand_msg_id) {
+        case 1:
+          message.reply(':beer: Piwo piwo to moje paliwo boże jak uwielbiam piwo piwo :beer:')
+          .then(() => message.react('🍺'));
+          break;
+        case 2:
+          message.reply(':beer: Biegnę żeby pić więcej PIWA :beer:')
+          .then(() => message.react('🍺'));
+          break;
+        case 3:
+          message.reply(':beer: Beer Beer is my fuel :beer:')
+          .then(() => message.react('🍺'));
+          break;
+        case 4:
+          message.reply(':beer: Piję PIWO trzy razy w tygodniu - wczoraj, dziś i jutro :beer:')
+          .then(() => message.react('🍺'));
+          break;
+        case 5:
+          message.reply(':beer: PIWO lepsze od chleba bo gryźć nie trzeba :beer:')
+          .then(() => message.react('🍺'));
+          break;
+        case 6:
+          message.reply(':beer: PIWO to nie klej, więc nie wąchaj tylko CHLEJ :beer:')
+          .then(() => message.react('🍺'));
+          break;
+        case 7:
+          message.reply(':beer: PIWO nie pyta - PIWO rozumie :beer:')
+          .then(() => message.react('🍺'));
+          break;
+        case 8:
+          message.reply(':beer: Brzuch nie jest od PIWA - brzuch jest na PIWO :beer:')
+          .then(() => message.react('🍺'));
+          break;
+        case 9:
+          message.reply(':beer: PIWO ma niewiele witamin, dlatego potrzebuję dużo PIWA :beer:')
+          .then(() => message.react('🍺'));
+          break;
+      }
     }
 
     if (message.content.toLowerCase().includes("lean")) {
+      var rand_msg_id=(getRandomInt(1,3));
       console.log(
         // Console log for bot host
         `Did someone say [lean]?`
       );
-      message.reply(':grapes: LEAN LEAN LUBIE PIĆ LEAN :grapes:')
-      .then(() => message.react('🍇'));
+      switch (rand_msg_id) {
+        case 1:
+          message.reply(':grapes: LEAN LEAN LUBIE PIĆ LEAN :grapes:')
+          .then(() => message.react('🍇'));
+          break;
+        case 2:
+          message.reply(':grapes: LEAN pić musze bo sie udusze :grapes:')
+          .then(() => message.react('🍇'));
+          break;
+      }
     }
 });
 
