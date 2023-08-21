@@ -111,6 +111,7 @@ leanmessage_array[2]=":grapes: Boże jak ja uwielbiam LEAN :grapes:"
       );
 
       message.reply(piwomessage_array[rand_msg_id])
+      .then(() => message.react('🍺'));
     }
 
     if (message.content.toLowerCase().includes("lean")) {
@@ -119,8 +120,9 @@ leanmessage_array[2]=":grapes: Boże jak ja uwielbiam LEAN :grapes:"
         // Console log for bot host
         `Did someone say [lean]?`
       );
-      
+
       message.reply(leanmessage_array[rand_msg_id])
+      .then(() => message.react('🍇'));
     }
 });
 
