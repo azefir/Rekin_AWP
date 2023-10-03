@@ -3,9 +3,14 @@ from discord.ext import commands
 import yt_dlp as youtube_dl
 import asyncio
 import unicodedata
+import json
 
+# Load the config file
+with open('config.json', 'r') as file:
+    config = json.load(file)
 
-TOKEN = "MTE1ODc5MzM0Nzc2NzQ4MDQxMA.GPC9xN.v78UFWCxb308W5-5SVNGhOIuVPXx6gxUr-tG-c"
+TOKEN = config['token_scierwojad']
+
 YOUTUBE_URL = "https://youtu.be/Ub2NCwDLQ50"  # Replace with the YouTube video URL you want to play
 
 intents = discord.Intents.default()
